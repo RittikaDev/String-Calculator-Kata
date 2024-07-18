@@ -35,4 +35,11 @@ describe('StringCalculatorService', () => {
   it('should handle numbers with newline and whitespace', () => {
     expect(service.add('1\n 2 \n3')).toEqual(6);
   });
+  it('should handle custom delimiter and newline', () => {
+    expect(service.add('//;\n1;2\n3')).toEqual(6);
+  });
+
+  it('should handle custom delimiter with brackets and newline', () => {
+    expect(service.add('//[**][%%]\n1**2%%3')).toEqual(6);
+  });
 });
