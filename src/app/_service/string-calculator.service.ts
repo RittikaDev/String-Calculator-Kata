@@ -9,11 +9,13 @@ export class StringCalculatorService {
   constructor() {}
 
   public add(numbers: string): number {
-    if (!numbers) {
-      return 0;
-    }
+    if (!numbers) return 0;
 
-    let numberList = numbers.split(',').map((num) => parseInt(num, 10));
+    let delimiters = [',', '\n'];
+
+    let numberList = numbers
+      .split(new RegExp(`[${delimiters.join('')}]`))
+      .map((num) => parseInt(num, 10));
 
     let result = numberList.reduce((acc, val) => acc + val, 0);
 

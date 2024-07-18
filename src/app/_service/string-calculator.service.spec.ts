@@ -24,4 +24,15 @@ describe('StringCalculatorService', () => {
   it('should handle two numbers', () => {
     expect(service.add('1,2')).toEqual(3);
   });
+
+  it('should handle multiple numbers', () => {
+    expect(service.add('1,2,3,4,5')).toEqual(15);
+  });
+
+  it('should handle numbers with whitespace', () => {
+    expect(service.add('1, 2, 3')).toEqual(6);
+  });
+  it('should handle numbers with newline and whitespace', () => {
+    expect(service.add('1\n 2 \n3')).toEqual(6);
+  });
 });
