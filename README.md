@@ -1,27 +1,47 @@
-# StringCalculatorKata
+# String Calculator TDD Kata
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+This project implements a String Calculator in Angular. It includes unit tests to ensure the correct functionality of the service.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before you begin, ensure you have met the following requirements:
 
-## Code scaffolding
+- You have installed Node.js and npm.
+- You have installed Angular CLI globally using `npm install -g @angular/cli`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started
 
-## Build
+Follow these steps to get the project up and running on your local machine.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. Clone the repository
 
-## Running unit tests
+```bash
+git clone https://github.com/RittikaDev/String-Calculator-Kata.git
+cd String-Calculator-Kata
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 1. Install dependencies
 
-## Running end-to-end tests
+```bash
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 3. Serve the application
 
-## Further help
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 4. Running Unit Tests
+
+```bash
+ng test
+```
+
+## Main Code
+
+The main logic for the String Calculator TDD Kata is implemented in :
+
+```bash
+src/app/_service/
+```

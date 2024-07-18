@@ -9,36 +9,52 @@ export class StringCalculatorService {
   constructor() {}
 
   public add(numbers: string): number {
+    this.callCount++;
+
     if (!numbers) return 0;
 
     let delimiters = [',', '\n'];
     let numbersWithoutDelimiters = numbers;
 
     if (numbers.startsWith('//')) {
-      let delimiterIndex = numbers.indexOf('\n');
-      let delimiterSection = numbers.substring(2, delimiterIndex);
+      const delimiterIndex = numbers.indexOf('\n');
+      const delimiterSection = numbers.substring(2, delimiterIndex);
       delimiters = [...delimiters, ...this.parseDelimiters(delimiterSection)];
       numbersWithoutDelimiters = numbers.substring(delimiterIndex + 1);
     }
 
-    let numberList = numbersWithoutDelimiters
-      .split(new RegExp(`[${delimiters.join('')}]`))
+    const numberList = numbersWithoutDelimiters
+      .split(
+        new RegExp(`[${delimiters.map(this.multipleDelimiters).join('')}]`)
+      )
       .map((num) => parseInt(num, 10));
 
-    console.log('Number list', numberList);
+    const negativeNumbers = numberList.filter((n) => n < 0);
+    if (negativeNumbers.length > 0) {
+      throw new Error(
+        `Negative numbers not allowed: ${negativeNumbers.join(', ')}`
+      );
+    }
 
-    let result = numberList
+    return numberList
       .filter((n) => n <= 1000)
       .reduce((acc, val) => acc + val, 0);
-
-    return result;
   }
-  private parseDelimiters(containsDelimiters: string): string[] {
-    if (containsDelimiters.startsWith('[') && containsDelimiters.endsWith(']'))
-      return containsDelimiters
-        .substring(1, containsDelimiters.length - 1)
-        .split('][');
 
-    return [containsDelimiters];
+  private parseDelimiters(delimiterSection: string): string[] {
+    if (delimiterSection.startsWith('[') && delimiterSection.endsWith(']')) {
+      return delimiterSection
+        .substring(1, delimiterSection.length - 1)
+        .split('][');
+    }
+    return [delimiterSection];
+  }
+
+  private multipleDelimiters(delimiter: string): string {
+    return delimiter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  public getCalledCount(): number {
+    return this.callCount;
   }
 }
